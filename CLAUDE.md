@@ -8,6 +8,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Before writing any code, ALWAYS read the relevant documentation file in the `/docs` directory first. This applies to every code generation task without exception. If a relevant doc exists for the technology or feature being implemented, it must be consulted before writing a single line of code.
 
+## Docs
+
+- [`docs/ui.md`](docs/ui.md) — UI standards: shadcn/ui components only, date formatting with date-fns
+- [`docs/data-fetching.md`](docs/data-fetching.md) — Data fetching rules: server components only, Drizzle ORM via `/data` helpers, always scope queries to the authenticated user
+
 ## Commands
 
 ```bash
