@@ -14,16 +14,16 @@ export default async function DashboardPage({
   const workouts = await getWorkoutsForDate(selectedDate);
 
   return (
-    <main className="flex flex-col gap-6 px-6 py-8 max-w-4xl mx-auto">
+    <main className="flex flex-col gap-6 py-8 px-[20%]">
       <h1 className="text-2xl font-semibold">Workout Dashboard</h1>
 
       <div className="flex flex-col md:flex-row gap-8 items-start">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 md:w-1/2">
           <h2 className="text-lg font-medium">Select Date</h2>
           <WorkoutCalendar selected={selectedDate} />
         </div>
 
-        <section className="flex flex-col gap-3 flex-1 w-full">
+        <section className="flex flex-col gap-3 md:w-1/2">
           <h2 className="text-lg font-medium">
             Workouts for {format(selectedDate, "do MMM yyyy")}
           </h2>
@@ -45,6 +45,7 @@ export default async function DashboardPage({
                       ? `${Math.floor(durationMins / 60)}h ${durationMins % 60}m`
                       : `${durationMins}m`
                     : null;
+                const inProgress = !!workout.startedAt && !workout.completedAt;
 
                 return (
                   <li
@@ -59,7 +60,9 @@ export default async function DashboardPage({
                         </span>
                       )}
                     </div>
-                    {durationLabel && (
+                    {inProgress ? (
+                      <div className="text-sm text-yellow-600 font-medium">In Progress</div>
+                    ) : durationLabel && (
                       <div className="text-sm text-gray-500">
                         <span className="text-gray-400 mr-1">Duration</span>
                         {durationLabel}

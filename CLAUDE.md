@@ -12,6 +12,8 @@ Before writing any code, ALWAYS read the relevant documentation file in the `/do
 
 - [`docs/ui.md`](docs/ui.md) — UI standards: shadcn/ui components only, date formatting with date-fns
 - [`docs/data-fetching.md`](docs/data-fetching.md) — Data fetching rules: server components only, Drizzle ORM via `/data` helpers, always scope queries to the authenticated user
+- [`docs/data-mutations.md`](docs/data-mutations.md) — Data mutation rules: `/data` helpers for all DB writes, server actions in colocated `actions.ts`, typed params (no FormData), Zod validation required
+- [`docs/auth.md`](docs/auth.md) — Auth standards: Clerk only, server-side `auth()` for user resolution, middleware-based route protection
 
 ## Commands
 
