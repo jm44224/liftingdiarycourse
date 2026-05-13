@@ -31,7 +31,7 @@ export default function WorkoutCalendar({ selected }: { selected: Date }) {
       mode="single"
       selected={selected}
       onSelect={handleSelect}
-      className="rounded-lg border border-gray-200 bg-white"
+      className="rounded-lg border border-gray-200 bg-gray-50"
     />
   );
 }
