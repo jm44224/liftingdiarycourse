@@ -6,10 +6,10 @@ import { createWorkout } from "@/data/workouts";
 
 const createWorkoutSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  startedAt: z.coerce.date(),
+  startedAt: z.string().transform((s) => new Date(s)),
 });
 
-export async function createWorkoutAction(name: string, startedAt: Date) {
+export async function createWorkoutAction(name: string, startedAt: string) {
   const parsed = createWorkoutSchema.parse({ name, startedAt });
   const workout = await createWorkout(parsed.name, parsed.startedAt);
   redirect(`/dashboard?date=${parsed.startedAt.toISOString().split("T")[0]}`);

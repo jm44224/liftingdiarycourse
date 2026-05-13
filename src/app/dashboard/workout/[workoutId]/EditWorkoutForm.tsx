@@ -5,15 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
-import { createWorkoutAction } from "./actions";
+import { updateWorkoutAction } from "./actions";
 
-function defaultTime() {
-  const now = new Date();
-  return `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-}
+type Props = {
+  workoutId: string;
+  defaultName: string;
+  defaultDate: string;
+  defaultTime: string;
+};
 
-export default function NewWorkoutForm({ defaultDate }: { defaultDate: string }) {
-  const [name, setName] = useState("");
+export default function EditWorkoutForm({ workoutId, defaultName, defaultDate, defaultTime }: Props) {
+  const [name, setName] = useState(defaultName);
   const [date, setDate] = useState(defaultDate);
   const [time, setTime] = useState(defaultTime);
   const [error, setError] = useState<string | null>(null);
@@ -28,10 +30,10 @@ export default function NewWorkoutForm({ defaultDate }: { defaultDate: string })
     }
     startTransition(async () => {
       try {
-        await createWorkoutAction(name.trim(), `${date}T${time}`);
+        await updateWorkoutAction(workoutId, name.trim(), `${date}T${time}`);
       } catch (err) {
         if (isRedirectError(err)) throw err;
-        setError("Failed to create workout. Please try again.");
+        setError("Failed to update workout. Please try again.");
       }
     });
   }
@@ -73,7 +75,7 @@ export default function NewWorkoutForm({ defaultDate }: { defaultDate: string })
       {error && <p className="text-sm text-red-500">{error}</p>}
       <div className="flex gap-3">
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Creating..." : "Create Workout"}
+          {isPending ? "Saving..." : "Save Changes"}
         </Button>
         <Button type="button" variant="outline" onClick={() => history.back()} disabled={isPending}>
           Cancel
