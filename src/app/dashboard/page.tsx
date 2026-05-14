@@ -8,7 +8,8 @@ export default async function DashboardPage({
   searchParams: Promise<{ date?: string }>;
 }) {
   const { date: dateParam } = await searchParams;
-  const selectedDate = new Date(`${dateParam ?? new Date().toISOString().split("T")[0]}T00:00:00`);
+  const dateString = dateParam ?? new Date().toISOString().split("T")[0];
+  const selectedDate = new Date(`${dateString}T00:00:00`);
   selectedDate.setHours(0, 0, 0, 0);
 
   const workouts = await getWorkoutsForDate(selectedDate);
@@ -20,7 +21,7 @@ export default async function DashboardPage({
       <div className="flex flex-col md:flex-row gap-8 items-start">
         <div className="flex flex-col gap-2 md:w-1/2">
           <h2 className="text-lg font-medium">Select Date</h2>
-          <WorkoutCalendar selected={selectedDate} />
+          <WorkoutCalendar selected={dateString} />
         </div>
 
         <section className="flex flex-col gap-3 md:w-1/2">
