@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
@@ -36,10 +36,10 @@ export default function RootLayout({
             <Show when="signed-out">
               <div className="flex items-center gap-2">
                 <SignInButton mode="modal">
-                  <Button variant="outline">Sign in</Button>
+                  <Button variant="outline" size="sm">Sign in</Button>
                 </SignInButton>
                 <SignUpButton mode="modal">
-                  <Button>Sign up</Button>
+                  <Button size="sm">Sign up</Button>
                 </SignUpButton>
               </div>
             </Show>
