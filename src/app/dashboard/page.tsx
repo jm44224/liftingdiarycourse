@@ -30,7 +30,7 @@ export default async function DashboardPage({
           </h2>
 
           {workouts.length === 0 ? (
-            <p className="text-sm text-gray-500">No workouts logged for this date.</p>
+            <p className="text-sm text-muted-foreground">No workouts logged for this date.</p>
           ) : (
             <ul className="flex flex-col gap-3">
               {workouts.map((workout) => {
@@ -51,21 +51,21 @@ export default async function DashboardPage({
                 return (
                   <li
                     key={workout.id}
-                    className="flex flex-col gap-2 rounded-lg border border-gray-200 px-4 py-3 bg-white"
+                    className="flex flex-col gap-2 rounded-lg border border-border px-4 py-3 bg-card"
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-semibold">{workout.name ?? "Untitled Workout"}</span>
                       {workout.startedAt && (
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-muted-foreground">
                           {format(workout.startedAt, "h:mm a")}
                         </span>
                       )}
                     </div>
                     {inProgress ? (
-                      <div className="text-sm text-yellow-600 font-medium">In Progress</div>
+                      <div className="text-sm text-yellow-500 font-medium">In Progress</div>
                     ) : durationLabel && (
-                      <div className="text-sm text-gray-500">
-                        <span className="text-gray-400 mr-1">Duration</span>
+                      <div className="text-sm text-muted-foreground">
+                        <span className="mr-1">Duration</span>
                         {durationLabel}
                       </div>
                     )}
