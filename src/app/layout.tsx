@@ -34,12 +34,14 @@ export default function RootLayout({
           <header className="flex justify-between items-center px-4 py-3 gap-2">
             <span className="font-semibold text-lg">Lifting Diary</span>
             <Show when="signed-out">
-              <SignInButton mode="modal">
-                <Button variant="outline" size="sm">Sign in</Button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <Button size="sm">Sign up</Button>
-              </SignUpButton>
+              <div className="flex items-center gap-2">
+                <SignInButton mode="modal">
+                  <Button variant="outline" size="sm">Sign in</Button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <Button size="sm">Sign up</Button>
+                </SignUpButton>
+              </div>
             </Show>
             <Show when="signed-in">
               <UserButton />
