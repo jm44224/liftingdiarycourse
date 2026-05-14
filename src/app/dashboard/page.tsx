@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { format } from "date-fns";
 import { getWorkoutsForDate } from "@/data/workouts";
 import WorkoutCalendar from "./WorkoutCalendar";
@@ -49,9 +50,10 @@ export default async function DashboardPage({
                 const inProgress = !!workout.startedAt && !workout.completedAt;
 
                 return (
-                  <li
-                    key={workout.id}
-                    className="flex flex-col gap-2 rounded-lg border border-border px-4 py-3 bg-card"
+                  <li key={workout.id}>
+                  <Link
+                    href={`/dashboard/workout/${workout.id}`}
+                    className="flex flex-col gap-2 rounded-lg border border-border px-4 py-3 bg-card hover:bg-accent transition-colors"
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-semibold">{workout.name ?? "Untitled Workout"}</span>
@@ -69,6 +71,7 @@ export default async function DashboardPage({
                         {durationLabel}
                       </div>
                     )}
+                  </Link>
                   </li>
                 );
               })}
