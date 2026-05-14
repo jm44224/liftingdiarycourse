@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Calendar } from "@/components/ui/calendar";
 
-export default function WorkoutCalendar({ selected }: { selected: Date }) {
+export default function WorkoutCalendar({ selected }: { selected: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -26,10 +26,13 @@ export default function WorkoutCalendar({ selected }: { selected: Date }) {
     router.push(`?${params.toString()}`);
   }
 
+  // Parse in local timezone so the highlighted day matches the URL date string exactly
+  const selectedDate = new Date(`${selected}T00:00:00`);
+
   return (
     <Calendar
       mode="single"
-      selected={selected}
+      selected={selectedDate}
       onSelect={handleSelect}
       className="rounded-lg border border-gray-200 bg-gray-50"
     />
