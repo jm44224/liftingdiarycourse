@@ -21,7 +21,8 @@ export default function WorkoutCalendar({ selected }: { selected: Date }) {
   function handleSelect(d: Date | undefined) {
     if (!d) return;
     const params = new URLSearchParams(searchParams.toString());
-    params.set("date", d.toISOString().split("T")[0]);
+    const localDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    params.set("date", localDate);
     router.push(`?${params.toString()}`);
   }
 
@@ -30,7 +31,7 @@ export default function WorkoutCalendar({ selected }: { selected: Date }) {
       mode="single"
       selected={selected}
       onSelect={handleSelect}
-      className="rounded-lg border border-gray-200 bg-white"
+      className="rounded-lg border border-gray-200 bg-gray-50"
     />
   );
 }

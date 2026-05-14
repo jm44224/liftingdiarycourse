@@ -12,6 +12,9 @@ Before writing any code, ALWAYS read the relevant documentation file in the `/do
 
 - [`docs/ui.md`](docs/ui.md) — UI standards: shadcn/ui components only, date formatting with date-fns
 - [`docs/data-fetching.md`](docs/data-fetching.md) — Data fetching rules: server components only, Drizzle ORM via `/data` helpers, always scope queries to the authenticated user
+- [`docs/data-mutations.md`](docs/data-mutations.md) — Data mutation rules: `/data` helpers for all DB writes, server actions in colocated `actions.ts`, typed params (no FormData), Zod validation required
+- [`docs/auth.md`](docs/auth.md) — Auth standards: Clerk only, server-side `auth()` for user resolution, middleware-based route protection
+- [`docs/routing.md`](docs/routing.md) — Routing standards: all routes under `/dashboard`, middleware-only route protection, no per-page auth guards
 
 ## Commands
 
@@ -22,6 +25,16 @@ npm run lint     # ESLint (no auto-fix; use eslint --fix for that)
 ```
 
 There is no test runner configured yet.
+
+## Code Generation Guidelines
+
+**IMPORTANT**: When generating any code, ALWAYS first refer to the relevant documentation files with the `/docs` directory to understant existing patterns, conventionsm and best practices before implementation:
+
+- /docs/ui.md
+- /docs/data-fetching.md
+- /docs/auth.md
+- /docs/data-mutations.md
+- /docs/routing.md
 
 ## Stack
 
