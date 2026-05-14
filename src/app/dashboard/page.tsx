@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { format } from "date-fns";
 import { getWorkoutsForDate } from "@/data/workouts";
 import WorkoutCalendar from "./WorkoutCalendar";
@@ -49,26 +50,28 @@ export default async function DashboardPage({
                 const inProgress = !!workout.startedAt && !workout.completedAt;
 
                 return (
-                  <li
-                    key={workout.id}
-                    className="flex flex-col gap-2 rounded-lg border border-gray-200 px-4 py-3 bg-white"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold">{workout.name ?? "Untitled Workout"}</span>
-                      {workout.startedAt && (
-                        <span className="text-sm text-gray-500">
-                          {format(workout.startedAt, "h:mm a")}
-                        </span>
-                      )}
-                    </div>
-                    {inProgress ? (
-                      <div className="text-sm text-yellow-600 font-medium">In Progress</div>
-                    ) : durationLabel && (
-                      <div className="text-sm text-gray-500">
-                        <span className="text-gray-400 mr-1">Duration</span>
-                        {durationLabel}
+                  <li key={workout.id}>
+                    <Link
+                      href={`/dashboard/workout/${workout.id}`}
+                      className="flex flex-col gap-2 rounded-lg border border-gray-200 px-4 py-3 bg-white hover:bg-gray-50 transition-colors block"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold">{workout.name ?? "Untitled Workout"}</span>
+                        {workout.startedAt && (
+                          <span className="text-sm text-gray-500">
+                            {format(workout.startedAt, "h:mm a")}
+                          </span>
+                        )}
                       </div>
-                    )}
+                      {inProgress ? (
+                        <div className="text-sm text-yellow-600 font-medium">In Progress</div>
+                      ) : durationLabel && (
+                        <div className="text-sm text-gray-500">
+                          <span className="text-gray-400 mr-1">Duration</span>
+                          {durationLabel}
+                        </div>
+                      )}
+                    </Link>
                   </li>
                 );
               })}
