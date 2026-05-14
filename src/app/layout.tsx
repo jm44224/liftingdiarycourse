@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,28 +29,34 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <ClerkProvider>
-          <header className="flex justify-between items-center px-4 py-3 gap-2">
-            <span className="font-semibold text-lg">Lifting Diary</span>
-            <Show when="signed-out">
+        <ThemeProvider>
+          <ClerkProvider>
+            <header className="flex justify-between items-center px-4 py-3 gap-2">
+              <span className="font-semibold text-lg">Lifting Diary</span>
               <div className="flex items-center gap-2">
-                <SignInButton mode="modal">
-                  <Button variant="outline" size="sm">Sign in</Button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                  <Button size="sm">Sign up</Button>
-                </SignUpButton>
+                <ThemeToggle />
+                <Show when="signed-out">
+                  <div className="flex items-center gap-2">
+                    <SignInButton mode="modal">
+                      <Button variant="outline" size="sm">Sign in</Button>
+                    </SignInButton>
+                    <SignUpButton mode="modal">
+                      <Button size="sm">Sign up</Button>
+                    </SignUpButton>
+                  </div>
+                </Show>
+                <Show when="signed-in">
+                  <UserButton />
+                </Show>
               </div>
-            </Show>
-            <Show when="signed-in">
-              <UserButton />
-            </Show>
-          </header>
-          {children}
-        </ClerkProvider>
+            </header>
+            {children}
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
