@@ -9,7 +9,11 @@
       "Bash(npm run *)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\jmate\\\\liftingdiarycourse\" -Recurse -Directory)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object)",
+      "Bash(node *)"
     ]
   },
   "enabledMcpjsonServers": [

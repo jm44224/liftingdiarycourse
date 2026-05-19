@@ -12,5 +12,5 @@ const createWorkoutSchema = z.object({
 export async function createWorkoutAction(name: string, startedAt: string) {
   const parsed = createWorkoutSchema.parse({ name, startedAt });
   const workout = await createWorkout(parsed.name, parsed.startedAt);
-  redirect(`/dashboard?date=${parsed.startedAt.toISOString().split("T")[0]}`);
+  redirect(`/dashboard/workout/${workout.id}`);
 }
