@@ -13,7 +13,13 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\jmate\\\\liftingdiarycourse\" -Recurse -Directory)",
       "Bash(Select-Object FullName)",
       "Bash(Sort-Object)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Skill(.claude:skills:skill-creator)",
+      "Bash(Get-ChildItem *)",
+      "Skill(workout-chart)",
+      "Bash(python *)",
+      "Bash(pip install *)",
+      "Bash(git commit *)"
     ]
   },
   "enabledMcpjsonServers": [
